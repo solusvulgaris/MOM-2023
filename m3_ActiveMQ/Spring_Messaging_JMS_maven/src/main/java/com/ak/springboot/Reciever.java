@@ -1,6 +1,6 @@
 package com.ak.springboot;
 
-//import org.springframework.jms.annotation.JmsListener;
+import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,4 +10,9 @@ public class Reciever {
     public void receiveMessage(String message) {
         System.out.println("Received message is: " + message);
     }*/
+
+    @JmsListener(destination="order-queue")
+    public void receiveMessage(String message) {
+        System.out.println("Received message is: " + message);
+    }
 }
