@@ -1,5 +1,6 @@
 package com.ak.springboot;
 
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
@@ -16,19 +17,31 @@ import javax.jms.ConnectionFactory;
 @SpringBootApplication
 public class SpringbootApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringbootApplication.class, args);
-		ConfigurableApplicationContext context = SpringApplication.run(SpringbootApplication.class, args);
-		JmsTemplate jmsTemplate = context.getBean(JmsTemplate.class);
+    public static void main(String[] args) {
+        SpringApplication.run(SpringbootApplication.class, args);
+        ConfigurableApplicationContext context = SpringApplication.run(SpringbootApplication.class, args);
+        //JmsTemplate jmsTemplate = context.getBean(JmsTemplate.class);
+        //jmsTemplate.convertAndSend("order-queue", "Hello!");
+        Sender sender = context.getBean(Sender.class);
+        sender.sendMessage("order-queue", "Hello!");
+    }
 
-		jmsTemplate.convertAndSend("order-queue", "Hello!");
-	}
+    @Bean
+    public JmsListenerContainerFactory warehouseFactory(ConnectionFactory factory, DefaultJmsListenerContainerFactoryConfigurer configurer) {
+        DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
+        configurer.configure(containerFactory, factory);
+        return containerFactory;
 
-	@Bean
-	public JmsListenerContainerFactory warehouseFactory(ConnectionFactory factory, DefaultJmsListenerContainerFactoryConfigurer configurer) {
-		DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
-		configurer.configure(containerFactory, factory);
-		return containerFactory;
+    }
 
-	}
+    @Bean
+    public ActiveMQConnectionFactory connectionFactory() {
+        ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory("admin", "admin", "tcp://localhost:61616");
+        return factory;
+    }
+
+    @Bean
+    public JmsTemplate jmsTemplate() {
+        return new JmsTemplate(connectionFactory());
+    }
 }
