@@ -19,13 +19,13 @@ public class SpringbootApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(SpringbootApplication.class, args);
-        ConfigurableApplicationContext context = SpringApplication.run(SpringbootApplication.class, args);
+//        ConfigurableApplicationContext context = SpringApplication.run(SpringbootApplication.class, args);
         //JmsTemplate jmsTemplate = context.getBean(JmsTemplate.class);
         //jmsTemplate.convertAndSend("order-queue", "Hello!");
-        Sender sender = context.getBean(Sender.class);
-        sender.sendMessage("order-queue", "Hello!");
+//        Sender sender = context.getBean(Sender.class);
+//        sender.sendMessage("order-queue", "Hello!");
     }
-
+/*
     @Bean
     public JmsListenerContainerFactory warehouseFactory(ConnectionFactory factory, DefaultJmsListenerContainerFactoryConfigurer configurer) {
         DefaultJmsListenerContainerFactory containerFactory = new DefaultJmsListenerContainerFactory();
@@ -51,4 +51,5 @@ public class SpringbootApplication {
         factory.setConcurrency("1-1");
         return factory;
     }
+*/
 }

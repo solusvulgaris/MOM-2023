@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Books Order</title>
+</head>
+<body>
+    <h1>Welcome to the Books Order Page!</h1>
+    <div>
+        <table>
+            <tr>
+                <td>Id</td>
+                <td>Title</td>
+            </tr>
+            <tr th:each="book: ${books}">
+                <td th:text="${book.bookId}">Id</td>
+                <td th:text="${book.title}">Title</td>
+            </tr>
+        </table>
+        <h4>Customer Id</h4>
+        <div class="input-group">
+            <input type="text" id="customerId" class="form-control" placeholder="Customer Account Number" aria-describedby="basic-addon2">
+        </div>
+        <br/>
+        <h4>Books</h4>
+        <select class="form-control" id="bookId">
+            <option value="1">select option 1</option>
+            <option value="2">select option 2</option>
+        </select>
+        <br/>
+
+        <button class="btn btn-primary" id="addToOrderId" onclick="processOrder();" type="button">Add to Order</button>
+        <p><a href="/process/order/111/mr-1234/jpw-1234/">Book Order</a></p>
+    </div>
+    <script>
+        function processOrder(){
+            alert("Hi there!");
+            var randomOrderId1 = Math.floor(Math.random() * 100000);
+             var randomOrderId2 = Math.floor(Math.random() * 100000);
+            alert("randomOrderId1:" + randomOrderId1);
+            alert("randomOrderId2:" + randomOrderId2);
+            jQuery.get('${pageContext.request.contextPath}/process/order/'+randomOrderId1+'/'+randomOrderId2+'/'+randomOrderId1+'/',
+                function(data, status){
+                    alert(data);
+                });
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-tWHlutFnuG0C6nQRlpvrEhE4QpkG1nn2MOUMWmUeRePl4e3Aki0VB6W1v3oLjFtd0hVOtRQ9PHpSfN6u6/QXkQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/webjars/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

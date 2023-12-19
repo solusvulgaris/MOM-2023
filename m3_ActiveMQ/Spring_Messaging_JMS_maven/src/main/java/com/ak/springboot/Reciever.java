@@ -11,8 +11,10 @@ public class Reciever {
         System.out.println("Received message is: " + message);
     }*/
 
-    @JmsListener(destination="order-queue")
-    public void receiveMessage(String message) {
-        System.out.println("Received message is: " + message);
+    @JmsListener(destination = "order-queue")
+    public void receiveMessage(String order){
+        System.out.println("Order Recieved = " + order);
     }
+
+
 }
