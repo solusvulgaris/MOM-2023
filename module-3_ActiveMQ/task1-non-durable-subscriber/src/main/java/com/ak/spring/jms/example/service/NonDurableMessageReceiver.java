@@ -1,0 +1,24 @@
+package com.ak.spring.jms.example.service;
+
+import com.ak.spring.jms.example.pojos.Message;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.stereotype.Service;
+
+/**
+ * Receiver is also known as a message-driven POJO
+ *
+ */
+@Service
+@Slf4j
+public class NonDurableMessageReceiver {
+    private static final String TOPIC = "message.queue";
+
+    @JmsListener(
+            destination = TOPIC,
+            containerFactory = "jmsListenerContainerFactory"
+    )
+    public void receiveMessage(Message message) {
+        log.info("Subscriber received message: " +  message);
+    }
+}

@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "e8db7379-fe72-4300-b62a-93a2f28c044d",
+		"name": "TaxiCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "438361"
+	},
+	"item": [
+		{
+			"name": "Taxi Signal 1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"let localVal = pm.collectionVariables.get(\"taxiId\");\r",
+							" pm.collectionVariables.set(\"taxiId\", localVal+1)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taxiId\": \"{{taxiId}}\",\r\n    \"latitude\": 53.0107386,\r\n    \"longitude\": 18.6035882\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/send-signal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"send-signal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Taxi Signal 2",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taxiId\": \"{{taxiId}}\",\r\n    \"latitude\": 53.0221257,\r\n    \"longitude\": 18.6332338\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/send-signal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"send-signal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Taxi Signal 3",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taxiId\": \"{{taxiId}}\",\r\n    \"latitude\": 53.0316622,\r\n    \"longitude\": 18.7092497\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/send-signal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"send-signal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "VehicleSignal BadRequest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"taxiId\": \"{{taxiId}}\",\r\n    \"latitude\": 153.0107386,\r\n    \"longitude\": 18.6035882\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v2/send-signal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v2",
+						"send-signal"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "taxiId",
+			"value": "taxi-1",
+			"type": "string"
+		}
+	]
+}

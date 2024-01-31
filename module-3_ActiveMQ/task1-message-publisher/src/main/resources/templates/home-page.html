@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Publisher Page</title>
+</head>
+<body>
+    <h1>Welcome to Message Publisher Page!</h1>
+    <div>
+        <p th:text="${messageNumber}"></p><p> messages were sent.</p>
+        <p><a href="/process/message/firstMessage/">Send first message</a></p>
+        <p><a href="/process/message/secondMessage/">Send second message</a></p>
+    </div>
+</body>
+</html>
